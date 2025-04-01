@@ -1,0 +1,8 @@
+torch==2.0.1
+transformers==4.31.0
+pretty_midi==0.2.9
+miditok==2.1.5
+numpy==1.23.5
+tqdm==4.65.0
+librosa==0.10.0
+python-rtmidi==1.5.0
