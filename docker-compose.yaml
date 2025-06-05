@@ -16,3 +16,5 @@ services:
       - "5000:5000"
     volumes:
       - /dev/shm:/dev/shm
+      - ./outputs:/app/musegan/v1/exps/temporal_hybrid/output/custom_generate
+      - ./exps:/app/musegan/v1/exps

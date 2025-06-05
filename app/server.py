@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+import os
+from flask import Flask, request, jsonify, send_file
 import threading
 from musegan_wrapper import run_musegan, read_progress
 
@@ -29,6 +30,25 @@ def generate():
 @app.route("/progress", methods=["GET"])
 def progress():
     return jsonify(read_progress())
+
+@app.route("/download", methods=["GET"])
+def download():
+    genre = request.args.get("genre", "classical")
+    tempo = int(request.args.get("tempo", 120))
+    length_bars = int(request.args.get("length_bars", 4))
+
+    filename = f"gen_{genre}_{tempo}bpm_{length_bars}bars.mid"
+    filepath = f"./musegan/v1/exps/temporal_hybrid/output/custom_generate/{filename}"
+
+    if not os.path.exists(filepath):
+        return jsonify({"error": "File not found"}), 404
+
+    return send_file(
+        filepath,
+        as_attachment=True,
+        download_name=filename,  # Ensures the correct filename is used
+        mimetype='audio/midi'    # Explicitly set MIDI MIME type
+    )
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
