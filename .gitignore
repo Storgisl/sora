@@ -1,5 +1,33 @@
-**/__pycache__/
-/audiocraft/
-/data/
-*.wav
-lmd_full/
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.swp
+*.egg-info/
+*.log
+
+# Virtual Environments
+.venv/
+env/
+venv/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Docker
+*.tar
+*.vhdx
+docker-compose.override.yml
+
+# System
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Models and outputs
+app/model/
+app/musegan/v1/output/
+
